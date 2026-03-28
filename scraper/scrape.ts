@@ -46,5 +46,5 @@ for (const file of Object.keys(indexData)) {
 
     latestData[file] = latest;
 }
-fs.writeFileSync("public/data/latest.json", JSON.stringify(indexData, null, 2));
+fs.writeFileSync("public/data/latest.json", JSON.stringify(latestData, null, 2));
 console.log("Successfully created latest.json")
