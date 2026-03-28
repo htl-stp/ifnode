@@ -31,11 +31,21 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 0.5em;
+    overflow-x: hidden;
 }
 
-h1 { font-size: 28px; }
-h2 { font-size: 22px; }
-h3 { font-size: 18px; }
+h1 {
+    font-size: 28px;
+}
+
+h2 {
+    font-size: 22px;
+}
+
+h3 {
+    font-size: 18px;
+}
 
 #list {
     display: flex;
@@ -63,4 +73,23 @@ a {
 
 a:hover {
     background-color: var(--bg3)
+}
+
+
+#content {
+    margin-top: 2em;
+    width: 50%;
+    overflow-x: hidden;
+}
+
+
+@media (max-width: 800px) {
+    #content {
+        width: 90%;
+    }
+}
+
+.hljs {
+    background-color: var(--bg2);
+!important;
 }
