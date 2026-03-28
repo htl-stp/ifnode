@@ -1,4 +1,4 @@
-  {
+{
   "name": "ifnode-archive",
   "private": true,
   "version": "0.0.0",
@@ -15,6 +15,7 @@
     "vite": "^8.0.1"
   },
   "dependencies": {
-    "cheerio": "^1.2.0"
+    "cheerio": "^1.2.0",
+    "tsx": "^4.21.0"
   }
 }
