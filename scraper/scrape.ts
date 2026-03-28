@@ -36,3 +36,15 @@ for (const file of files) {
 
 fs.writeFileSync("public/data/index.json", JSON.stringify(indexData, null, 2));
 console.log("Successfully created index.json")
+
+// build latest.json
+const latestData: Record<string, string> = {}
+for (const file of Object.keys(indexData)) {
+    const values = indexData[file];
+
+    const latest = values.sort().at(-1)!
+
+    latestData[file] = latest;
+}
+fs.writeFileSync("public/data/latest.json", JSON.stringify(indexData, null, 2));
+console.log("Successfully created latest.json")
