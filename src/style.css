@@ -5,6 +5,10 @@
     color: white;
 }
 
+h1 {
+    padding-top: 1em;
+}
+
 body, html {
     width: 100vw;
     height: 100vh;
@@ -22,6 +26,8 @@ body {
     display: flex;
     flex-direction: column;
     width: 50%;
+    padding-bottom: 5em;
+    padding-top: 2em;
 }
 
 @media (max-width: 800px) {
