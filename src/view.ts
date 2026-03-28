@@ -14,7 +14,6 @@ const params = new URLSearchParams(window.location.search);
 
 const file = params.get("file");
 if (!file) {
-    window.location.href = "index.html";
     throw new Error("Could not find file!");
 }
 

@@ -88,8 +88,3 @@ a:hover {
         width: 90%;
     }
 }
-
-.hljs {
-    background-color: var(--bg2);
-!important;
-}
