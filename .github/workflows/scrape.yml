@@ -1,0 +1,30 @@
+name: Scrape
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm install
+
+      - name: "Run Scraper"
+        run: node scrape.js
+
+      - name: "Upload Data to Repo"
+        run: |
+          git config user.name "scraper"
+          git config user.email "scraper"
+          git add .
+          git commit -m "Upload scraped Data to Repo" || exit 0
+          git push
