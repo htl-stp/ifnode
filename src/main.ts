@@ -1,4 +1,4 @@
-const res = await fetch("/data/latest.json")
+const res = await fetch("https://raw.githubusercontent.com/htl-stp/ifnode/refs/heads/main/public/data/latest.json")
 const json = await res.json()
 
 console.log(json)
