@@ -29,5 +29,5 @@ jobs:
           git config user.name "scraper"
           git config user.email "scraper"
           git add .
-          git commit -m "Upload scraped Data to Repo #${{ github.run_id }}" || exit 0
+          git commit -m "Upload scraped Data to Repo #${{ github.run_number }}" || exit 0
           git push
