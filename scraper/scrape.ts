@@ -20,7 +20,19 @@ $("#list a").each((_, el) => {
     elements.set(text, href);
 })
 
+// scrape and save files
 for (const name of elements.keys()) {
     const { content, hash } = await fetchFile(name);
     saveFileIfChanged(name, content, hash);
 }
+
+// build index.json
+const indexData: Record<string, string[]> = {}
+const files = fs.readdirSync("public/data/history")
+for (const file of files) {
+    const versions = fs.readdirSync(path.join("public/data/history",file))
+    indexData[file] = versions;
+}
+
+fs.writeFileSync("public/data/index.json", JSON.stringify(indexData, null, 2));
+console.log("Successfully created index.json")
