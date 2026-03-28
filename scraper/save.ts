@@ -1,5 +1,7 @@
 import fs from "fs";
 import path from "path";
+import {getAllImagesInMarkdown} from "./processing";
+import {toAbsolute} from "./utils";
 
 export function saveFileIfChanged(name: string, md: string, hash: string) {
     const dataPath = "./public/data";
@@ -28,4 +30,23 @@ export function saveFileIfChanged(name: string, md: string, hash: string) {
     fs.writeFileSync(path.join(historyDir, `${timestamp}.md`), md);
 
     console.log(`${name} has changed.`)
+
+    const images = getAllImagesInMarkdown(md);
+    images.forEach(async image => {
+        console.log(`- scraping ${image}`)
+
+        const imageUrl = toAbsolute(image);
+
+        await saveImage(imageUrl, `public/data/images/${image}`)
+    })
+}
+
+async function saveImage(url: string, localPath: string) {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`Failed ${url}`);
+
+    const buffer = Buffer.from(await res.arrayBuffer());
+
+    fs.mkdirSync(path.dirname(localPath), { recursive: true });
+    fs.writeFileSync(localPath, buffer);
 }

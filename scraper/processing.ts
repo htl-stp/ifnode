@@ -25,3 +25,16 @@ export async function fetchFile(name: string) {
         hash: hash(md)
     }
 }
+
+
+export function getAllImagesInMarkdown(markdown: string) {
+    const regex = /!\[.*?]\((.+?)\)/g;
+    const matches = [];
+    let match;
+
+    while ((match = regex.exec(markdown)) !== null) {
+        matches.push(match[1]);
+    }
+
+    return matches;
+}
