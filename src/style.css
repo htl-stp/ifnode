@@ -1,0 +1,44 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+body, html {
+    width: 100vw;
+    height: 100vh;
+    background: #101010
+}
+
+body {
+    font-family: Lato, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#list {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+@media (max-width: 800px) {
+    #list {
+        width: 100%;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    padding: 1em;
+    border-radius: 4px;
+    width: 100%;
+    background-color: #151515
+}
+
+a:hover {
+    background-color: #1a1a1a;
+}
