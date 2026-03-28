@@ -1,0 +1,22 @@
+.markdown-body hr {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    width: 100%;
+}
+
+.markdown-body h4 {
+    font-size: 1.2em;
+}
+
+.markdown-body h2,h3,h4,h5,h6 {
+    margin-bottom: 1em;
+}
+
+.markdown-body pre {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.markdown-body img {
+    max-width: 100%;
+}
