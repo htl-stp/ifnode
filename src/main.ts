@@ -10,7 +10,7 @@ for (const file of Object.keys(json)) {
 
     const a = document.createElement("a")
     a.innerText = file;
-    a.href = `data/history/${file}/${link}`
+    a.href = `view.html?file=${file}`
 
     main.appendChild(a)
 }
