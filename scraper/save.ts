@@ -2,8 +2,11 @@ import fs from "fs";
 import path from "path";
 
 export function saveFileIfChanged(name: string, md: string, hash: string) {
-    const statePath = "./public/data/state.json";
-    const historyDir = path.join("./public/data/history", name);
+    const dataPath = "./public/data";
+    const statePath = path.join(dataPath, "state.json");
+    const historyDir = path.join(dataPath, "history", name);
+
+    if (!fs.existsSync(dataPath)) fs.mkdirSync(dataPath, { recursive: true });
 
     let state: Record<string, string> = {};
     try {
