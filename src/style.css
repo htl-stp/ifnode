@@ -71,7 +71,7 @@ h3 {
     }
 }
 
-a {
+#list a {
     text-decoration: none;
     color: inherit;
     padding: 1em;
@@ -81,7 +81,7 @@ a {
     border: 1px solid var(--border)
 }
 
-a:hover {
+#list a:hover {
     background-color: var(--bg3)
 }
 
