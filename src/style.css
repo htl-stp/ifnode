@@ -120,6 +120,20 @@ select:focus {
     gap: 4px;
 }
 
+#back {
+    width: 3em;
+    height: 3em;
+    position: fixed;
+
+    top: 2em;
+    left: 1em;
+    display: block;
+
+    background: url("../public/back.svg") no-repeat center / contain;
+
+    border: none;
+}
+
 @media (max-width: 800px) {
     #content, .nav-bar {
         width: 90%;
