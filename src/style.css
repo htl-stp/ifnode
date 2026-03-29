@@ -87,16 +87,41 @@ a:hover {
 
 
 #content {
-    margin-top: 2em;
+    margin-top: 0.3em;
     width: 50%;
     overflow-x: hidden;
     padding-bottom: 2em;
     margin-bottom: 2em;
 }
 
+#title {
+    margin-bottom: 1em;
+}
+
+
+select {
+    border: 2px solid var(--border);
+    background: var(--bg2);
+    padding: 8px;
+    border-radius: 4px;
+}
+
+select:hover,
+select:focus {
+    background: var(--bg3);
+}
+
+.nav-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 50%;
+    gap: 4px;
+}
 
 @media (max-width: 800px) {
-    #content {
+    #content, .nav-bar {
         width: 90%;
     }
 }

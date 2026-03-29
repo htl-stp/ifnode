@@ -37,3 +37,27 @@ document.getElementById("title")!.textContent = file
 document.getElementById("content")!.innerHTML = html;
 
 hljs.highlightAll()
+
+const select: HTMLSelectElement = document.getElementById("versions") as HTMLSelectElement;
+for (const v of versions[file].sort().reverse()) {
+    let text = v.split("T")[0];
+
+    if (v === latest[file]) {
+        text += " (latest)"
+    }
+
+    const option = document.createElement("option");
+    option.innerText = text
+    option.value = v;
+    option.selected = v === version;
+
+    console.log(option);
+
+    select.append(option);
+}
+
+console.log(versions[file])
+
+select.onchange = (e) => {
+    window.location.href=`view.html?file=${file}&version=${select.value}`;
+}
