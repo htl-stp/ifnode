@@ -21,7 +21,8 @@ h1 {
 body, html {
     width: 100vw;
     height: 100vh;
-    background: var(--bg)
+    background: var(--bg);
+    overflow-y: hidden;
 }
 
 body {
@@ -80,6 +81,8 @@ a:hover {
     margin-top: 2em;
     width: 50%;
     overflow-x: hidden;
+    padding-bottom: 2em;
+    margin-bottom: 2em;
 }
 
 
