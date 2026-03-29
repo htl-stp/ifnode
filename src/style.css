@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
 :root {
     --bg: #101010;
     --bg2: #151515;
@@ -46,6 +48,11 @@ h2 {
 
 h3 {
     font-size: 18px;
+}
+
+.but-better {
+    font-family: "Dancing Script", cursive;
+    font-size: 1.2em;
 }
 
 #list {
