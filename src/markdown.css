@@ -22,5 +22,6 @@
 }
 
 .markdown-body a {
-    color: aqua;
+    color: #42affa;
+    text-decoration: none;
 }
