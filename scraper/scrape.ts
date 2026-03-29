@@ -3,6 +3,7 @@ import fs from "fs"
 import path from "path"
 import {fetchFile} from "./processing";
 import {saveFileIfChanged} from "./save";
+import {data_path} from "./config";
 
 const base = "https://ifnode.htlstp.ac.at/"
 
@@ -26,15 +27,17 @@ for (const name of elements.keys()) {
     saveFileIfChanged(name, content, hash);
 }
 
+const  historyPath = path.join(data_path, `history`)
+
 // build index.json
 const indexData: Record<string, string[]> = {}
-const files = fs.readdirSync("public/data/history")
+const files = fs.readdirSync(historyPath)
 for (const file of files) {
-    const versions = fs.readdirSync(path.join("public/data/history",file))
+    const versions = fs.readdirSync(path.join(historyPath,file))
     indexData[file] = versions;
 }
 
-fs.writeFileSync("public/data/index.json", JSON.stringify(indexData, null, 2));
+fs.writeFileSync(path.join(data_path, "index.json"), JSON.stringify(indexData, null, 2));
 console.log("Successfully created index.json")
 
 // build latest.json
@@ -46,5 +49,5 @@ for (const file of Object.keys(indexData)) {
 
     latestData[file] = latest;
 }
-fs.writeFileSync("public/data/latest.json", JSON.stringify(latestData, null, 2));
+fs.writeFileSync(path.join(data_path, "latest.json"), JSON.stringify(latestData, null, 2));
 console.log("Successfully created latest.json")

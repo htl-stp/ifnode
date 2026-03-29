@@ -4,7 +4,7 @@ import {getAllImagesInMarkdown} from "./processing";
 import {toAbsolute} from "./utils";
 
 export function saveFileIfChanged(name: string, md: string, hash: string) {
-    const dataPath = "./public/data";
+    const dataPath = "./data";
     const statePath = path.join(dataPath, "state.json");
     const historyDir = path.join(dataPath, "history", name);
 
@@ -37,7 +37,7 @@ export function saveFileIfChanged(name: string, md: string, hash: string) {
 
         const imageUrl = toAbsolute(image);
 
-        await saveImage(imageUrl, `public/data/images/${image}`)
+        await saveImage(imageUrl, `data/images/${image}`)
     })
 }
 
