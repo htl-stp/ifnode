@@ -1,4 +1,6 @@
-const res = await fetch("https://raw.githubusercontent.com/htl-stp/ifnode/refs/heads/main/public/data/latest.json")
+import {data_url} from "./config.ts";
+
+const res = await fetch(`${data_url}/latest.json`)
 const json = await res.json()
 
 console.log(json)

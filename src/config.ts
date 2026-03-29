@@ -1,0 +1,1 @@
+export const data_url = "https://raw.githubusercontent.com/htl-stp/ifnode/refs/heads/main/data";
