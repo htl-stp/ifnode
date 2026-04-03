@@ -6,17 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Ifnode, but better!</title>
 
-    <script src="src/view.ts" type="module" defer></script>
-    <link rel="stylesheet" href="src/style.css">
     <link rel="stylesheet" href="src/markdown.css">
+    <link rel="stylesheet" href="src/style.css">
+
+    <script src="src/view.ts" type="module" defer></script>
 </head>
 <body>
-    <h1 id="title"></h1>
-    <nav class="nav-bar">
-        <label for="versions">Version:</label>
-        <select id="versions">
-        </select>
-    </nav>
-    <div class="markdown-body" id="content"></div>
+
+<h1 id="title" class="text-center heading-lg mt-lg"></h1>
+<nav class="container">
+    <label for="versions">Version:</label>
+    <select id="versions">
+    </select>
+</nav>
+
+<section class="markdown-body section container mb-lg">
+    <div id="content">
+
+    </div>
+</section>
+
 </body>
 </html>

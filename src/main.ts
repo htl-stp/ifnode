@@ -1,4 +1,5 @@
 import {data_url} from "./config.ts";
+import "@htl-stp/core/style.css"
 
 const res = await fetch(`${data_url}/latest.json`)
 const json = await res.json()

@@ -1,74 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
 
-:root {
-    --bg: #101010;
-    --bg2: #151515;
-    --bg3: #212121;
-    --text: #ffffff;
-    --muted: #232323;
-    --border: #1a1a1a;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    color: white;
-}
-
-h1 {
-    padding-top: 1em;
-}
-
-body, html {
-    width: 100vw;
-    height: 100vh;
-    background: var(--bg);
-    overflow-y: hidden;
-}
-
 body {
-    font-family: system-ui, sans-serif;
-    line-height: 1.5em;
-    font-size: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0.5em;
     overflow-x: hidden;
-}
-
-h1 {
-    font-size: 28px;
-}
-
-h2 {
-    font-size: 22px;
-}
-
-h3 {
-    font-size: 18px;
-}
-
-.but-better {
-    font-family: "Dancing Script", cursive;
-    font-size: 1.2em;
-}
-
-#list {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    margin-top: 2em;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    overflow-y: scroll;
-}
-
-@media (max-width: 800px) {
-    #list {
-        width: 100%;
-    }
 }
 
 #list a {
@@ -77,65 +10,10 @@ h3 {
     padding: 1em;
     border-radius: 4px;
     width: 100%;
-    background-color: var(--bg2);
+    background-color: var(--bg);
     border: 1px solid var(--border)
 }
 
 #list a:hover {
-    background-color: var(--bg3)
-}
-
-
-#content {
-    margin-top: 0.3em;
-    width: 50%;
-    overflow-x: hidden;
-    padding-bottom: 2em;
-    margin-bottom: 2em;
-}
-
-#title {
-    margin-bottom: 1em;
-}
-
-
-select {
-    border: 2px solid var(--border);
-    background: var(--bg2);
-    padding: 8px;
-    border-radius: 4px;
-}
-
-select:hover,
-select:focus {
-    background: var(--bg3);
-}
-
-.nav-bar {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    width: 50%;
-    gap: 4px;
-}
-
-#back {
-    width: 3em;
-    height: 3em;
-    position: fixed;
-
-    top: 2em;
-    left: 1em;
-    display: block;
-
-    background: url("../public/back.svg") no-repeat center / contain;
-
-    border: none;
-}
-
-@media (max-width: 800px) {
-    #content, .nav-bar {
-        width: 90%;
-    }
+    background-color: var(--bg-light);
 }
