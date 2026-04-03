@@ -10,10 +10,10 @@ body {
     padding: 1em;
     border-radius: 4px;
     width: 100%;
-    background-color: var(--bg);
-    border: 1px solid var(--border)
+    background-color: var(--bg-light);
+    border: 1px solid var(--border);
 }
 
 #list a:hover {
-    background-color: var(--bg-light);
+    background-color: var(--bg-hover);
 }
