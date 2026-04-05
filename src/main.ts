@@ -1,5 +1,8 @@
 import {data_url} from "./config.ts";
-import "@htl-stp/core/style.css"
+
+import "@htl-stp/core/core.css" // needed (bare minimum)
+import "@htl-stp/core/utilities.css" // recommended (helpers)
+import "@htl-stp/core/components.css" // optional, opinionated (buttons, cards)
 
 const res = await fetch(`${data_url}/latest.json`)
 const json = await res.json()

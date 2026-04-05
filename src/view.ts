@@ -2,7 +2,10 @@ import { marked } from "marked";
 import hljs from "highlight.js";
 import 'highlight.js/styles/github-dark.css';
 import {data_url} from "./config.ts";
-import "@htl-stp/core/style.css"
+
+import "@htl-stp/core/core.css" // needed (bare minimum)
+import "@htl-stp/core/utilities.css" // recommended (helpers)
+import "@htl-stp/core/components.css" // optional, opinionated (buttons, cards)
 
 function fixImagePaths(md: string) {
     return md.replace(/!\[(.*?)]\((.*?)\)/g, (_, alt, src) => {
