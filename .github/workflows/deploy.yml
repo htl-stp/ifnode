@@ -6,7 +6,6 @@ on:
   # Runs on pushes targeting the default branch
   push:
     paths-ignore:
-      - "data/**"
       - "scraper/**"
     branches: ['main']
 
