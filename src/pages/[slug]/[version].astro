@@ -12,7 +12,7 @@ const entries = Object.entries(index) as [string, string[]][];
 
 function fixImagePaths(md: string) {
     return md.replace(/!\[(.*?)]\((.*?)\)/g, (_, alt, src) => {
-        const newSrc = `/${src}`;
+        const newSrc = `/ifnode/${src}`;
         return `![${alt}](${newSrc})`;
     });
 }
