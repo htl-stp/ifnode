@@ -1,0 +1,36 @@
+---
+import latest from '@data/latest.json'
+
+import '@htl-stp/core/core.css'
+import '@htl-stp/core/components.css'
+import '@htl-stp/core/utilities.css'
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link rel="stylesheet" href="src/style.css">
+
+    <title>Ifnode, but better!</title>
+</head>
+<body>
+
+<h1 class="text-center heading-lg mt-lg">Ifnode, <span class="text-but-better">but better!</span> ™</h1>
+
+<section class="section container">
+    <div id="list" class="flex-column mb-lg">
+        {Object.keys(latest).map((key) => (
+                <a href={key}>
+                    {key}
+                </a>
+        ))}
+    </div>
+</section>
+
+
+</body>
+</html>
