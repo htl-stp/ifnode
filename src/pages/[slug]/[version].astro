@@ -1,0 +1,88 @@
+---
+import '@htl-stp/core/core.css'
+import '@htl-stp/core/utilities.css'
+import '@htl-stp/core/components.css'
+import '@styles/markdown.css'
+import 'highlight.js/styles/github-dark.css';
+
+import index from '@data/index.json'
+import {marked} from "marked";
+import hljs from "highlight.js";
+const entries = Object.entries(index) as [string, string[]][];
+
+function fixImagePaths(md: string) {
+    return md.replace(/!\[(.*?)]\((.*?)\)/g, (_, alt, src) => {
+        const newSrc = `/${src}`;
+        return `![${alt}](${newSrc})`;
+    });
+}
+
+interface Params {
+    slug: string;
+    version: string;
+}
+
+export function getStaticPaths() {
+    const entries = Object.entries(index) as [string, string[]][];
+
+    return entries.flatMap(([slug, versions]) =>
+        versions.map((version) => ({
+            params: {
+                slug: slug.replace(/\.md$/, ''),
+                version: version.replace(/\.md$/, '')
+            },
+        }))
+    );
+}
+
+const {slug} = Astro.params;
+const {version} = Astro.params;
+
+const versions = entries.find(([key]) => key === `${slug}.md`)?.[1].map(v => v.split('.')[0].split('T')[0]) ?? [];
+
+const files = import.meta.glob('@data/history/**/*.md', {
+    query: '?raw',
+    import: 'default'
+})
+
+const path = `/data/history/${slug}.md/${version}.md`
+
+const file = files[path];
+const text: string = (await file()) as string;
+
+const fixed = fixImagePaths(text);
+
+const renderer = new marked.Renderer();
+renderer.code = ({text, lang, escaped}) => {
+    const validLang = lang && hljs.getLanguage(lang);
+
+    const highlighted = validLang
+        ? hljs.highlight(text, {language: lang}).value
+        : hljs.highlightAuto(text).value;
+
+    return `<pre><code class="hljs ${lang ?? ""}">${highlighted}</code></pre>`;
+};
+
+const parsed = await marked.parse(fixed, {renderer});
+---
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+<main>
+    <h1 id="title" class="text-center heading-lg mt-lg">{slug}</h1>
+    <nav class="container">
+        <label for="versions">Version:</label>
+        <select id="versions">
+            {versions.map(version => (
+                    <option value={version}>{version}</option>
+            ))}
+        </select>
+    </nav>
+
+    <section class="markdown-body section container mb-lg">
+        <div id="content" set:html={parsed}></div>
+    </section>
+</main>
+</body>
