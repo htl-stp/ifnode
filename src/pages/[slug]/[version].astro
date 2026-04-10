@@ -4,6 +4,14 @@ import index from '@data/index.json'
 import {marked} from "marked";
 const entries = Object.entries(index) as [string, string[]][];
 
+function fixImagePaths(md: string) {
+    return md.replace(/!\[(.*?)]\((.*?)\)/g, (_, alt, src) => {
+        const newSrc = `/${src}`;
+        return `![${alt}](${newSrc})`;
+    });
+}
+
+
 interface Params {
     slug: string;
     version: string;
@@ -34,7 +42,9 @@ const path = `/data/history/${slug}/${version}`
 const file = files[path];
 const text: string = (await file()) as string;
 
-const parsed = await marked.parse(text);
+const fixed = fixImagePaths(text);
+
+const parsed = await marked.parse(fixed);
 ---
 <h1 id="title" class="text-center heading-lg mt-lg">{slug}</h1>
 <nav class="container">
