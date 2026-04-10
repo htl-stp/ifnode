@@ -1,21 +1,40 @@
 ---
 import latest from '@data/latest.json'
 import index from '@data/index.json'
+import {marked} from "marked";
 const entries = Object.entries(index) as [string, string[]][];
 
 interface Params {
     slug: string;
+    version: string;
 }
 
 export function getStaticPaths() {
-    return Object.keys(latest).map(key => ({
-        params: { slug: key },
-    }))
+    const entries = Object.entries(index) as [string, string[]][];
+
+    return entries.flatMap(([slug, versions]) =>
+        versions.map((version) => ({
+            params: { slug, version },
+        }))
+    );
 }
 
 const { slug } = Astro.params;
+const { version } = Astro.params;
 
 const versions = entries.find(([key]) => key === slug)?.[1].map(v => v.split('.')[0].split('T')[0]) ?? [];
+
+const files = import.meta.glob('@data/history/**/*.md', {
+    query: '?raw',
+    import: 'default'
+})
+
+const path = `/data/history/${slug}/${version}`
+
+const file = files[path];
+const text: string = (await file()) as string;
+
+const parsed = await marked.parse(text);
 ---
 <h1 id="title" class="text-center heading-lg mt-lg">{slug}</h1>
 <nav class="container">
@@ -28,7 +47,5 @@ const versions = entries.find(([key]) => key === slug)?.[1].map(v => v.split('.'
 </nav>
 
 <section class="markdown-body section container mb-lg">
-    <div id="content">
-
-    </div>
+    <div id="content" set:html={parsed}></div>
 </section>
