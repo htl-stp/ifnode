@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "tsc && astro build",
+    "build": "astro build",
     "scrape": "tsx scraper/scrape.ts"
   },
   "devDependencies": {
