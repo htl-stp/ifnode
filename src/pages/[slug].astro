@@ -1,0 +1,34 @@
+---
+import latest from '@data/latest.json'
+import index from '@data/index.json'
+const entries = Object.entries(index) as [string, string[]][];
+
+interface Params {
+    slug: string;
+}
+
+export function getStaticPaths() {
+    return Object.keys(latest).map(key => ({
+        params: { slug: key },
+    }))
+}
+
+const { slug } = Astro.params;
+
+const versions = entries.find(([key]) => key === slug)?.[1].map(v => v.split('.')[0].split('T')[0]) ?? [];
+---
+<h1 id="title" class="text-center heading-lg mt-lg">{slug}</h1>
+<nav class="container">
+    <label for="versions">Version:</label>
+    <select id="versions">
+        { versions.map(version => (
+            <option value={version}>{version}</option>
+        ))}
+    </select>
+</nav>
+
+<section class="markdown-body section container mb-lg">
+    <div id="content">
+
+    </div>
+</section>
