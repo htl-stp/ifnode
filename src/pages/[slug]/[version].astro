@@ -17,7 +17,6 @@ function fixImagePaths(md: string) {
     });
 }
 
-
 interface Params {
     slug: string;
     version: string;
@@ -28,7 +27,10 @@ export function getStaticPaths() {
 
     return entries.flatMap(([slug, versions]) =>
         versions.map((version) => ({
-            params: {slug, version},
+            params: {
+                slug: slug.replace(/\.md$/, ''),
+                version: version.replace(/\.md$/, '')
+            },
         }))
     );
 }
@@ -36,14 +38,14 @@ export function getStaticPaths() {
 const {slug} = Astro.params;
 const {version} = Astro.params;
 
-const versions = entries.find(([key]) => key === slug)?.[1].map(v => v.split('.')[0].split('T')[0]) ?? [];
+const versions = entries.find(([key]) => key === `${slug}.md`)?.[1].map(v => v.split('.')[0].split('T')[0]) ?? [];
 
 const files = import.meta.glob('@data/history/**/*.md', {
     query: '?raw',
     import: 'default'
 })
 
-const path = `/data/history/${slug}/${version}`
+const path = `/data/history/${slug}.md/${version}.md`
 
 const file = files[path];
 const text: string = (await file()) as string;
