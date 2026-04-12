@@ -1,7 +1,5 @@
 ---
-import '@htl-stp/core/core.css'
-import '@htl-stp/core/utilities.css'
-import '@htl-stp/core/components.css'
+import '@htl-stp/core/theme.css'
 import '@styles/markdown.css'
 import 'highlight.js/styles/github-dark.css';
 
@@ -71,7 +69,7 @@ const parsed = await marked.parse(fixed, {renderer});
 </head>
 <body>
 <main>
-    <h1 id="title" class="text-center heading-lg mt-lg">{slug}</h1>
+    <h1 id="title" class="text-center heading-xl mt-lg">{slug}</h1>
     <nav class="container">
         <label for="versions">Version:</label>
         <select id="versions">

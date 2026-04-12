@@ -14,7 +14,7 @@
     "vite": "^7.0.0"
   },
   "dependencies": {
-    "@htl-stp/core": "^1.1.0",
+    "@htl-stp/core": "^1.2.2",
     "astro": "^6.1.5",
     "cheerio": "^1.2.0",
     "highlight.js": "^11.11.1",
