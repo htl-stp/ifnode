@@ -80,23 +80,30 @@ const parsed = await marked.parse(fixed, {renderer});
         </select>
 
         <script>
-            const versionSelect = document.getElementById('versions') as (HTMLSelectElement | undefined)
+            const versionSelect = document.getElementById('versions') as HTMLSelectElement;
+
             if (versionSelect) {
-                const currentVersion = location.pathname.split('/').at(-1)
+                const base = import.meta.env.BASE_URL;
+
+                const pathParts = location.pathname
+                    .replace(base, '')
+                    .split('/')
+                    .filter(Boolean);
+
+                const currentVersion = pathParts.at(-1);
 
                 if (currentVersion) {
                     versionSelect.value = currentVersion;
-                    // console.log(currentVersion)
                 }
 
+                versionSelect.addEventListener('change', () => {
+                    const version = versionSelect.value;
 
-                versionSelect.addEventListener('change', e => {
-                    const version = versionSelect.value
+                    pathParts[pathParts.length - 1] = version;
 
-                    // console.log(version)
-                    const newPath = [...location.pathname.split('/').slice(0,-1), version].join('/')
-                    location.pathname = newPath;
-                })
+                    const newPath = base + pathParts.join('/');
+                    location.href = newPath;
+                });
             }
         </script>
     </nav>
