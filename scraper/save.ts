@@ -2,13 +2,13 @@ import fs from "fs";
 import path from "path";
 import {getAllImagesInMarkdown} from "./processing";
 import {toAbsolute} from "./utils";
+import {data_path, image_path} from "./config";
 
 export function saveFileIfChanged(name: string, md: string, hash: string) {
-    const dataPath = "./data";
-    const statePath = path.join(dataPath, "state.json");
-    const historyDir = path.join(dataPath, "history", name);
+    const statePath = path.join(data_path, "state.json");
+    const historyDir = path.join(data_path, "history", name);
 
-    if (!fs.existsSync(dataPath)) fs.mkdirSync(dataPath, { recursive: true });
+    if (!fs.existsSync(data_path)) fs.mkdirSync(data_path, { recursive: true });
 
     let state: Record<string, string> = {};
     try {
@@ -37,7 +37,7 @@ export function saveFileIfChanged(name: string, md: string, hash: string) {
 
         const imageUrl = toAbsolute(image);
 
-        await saveImage(imageUrl, `data/images/${image}`)
+        await saveImage(imageUrl, `${image_path}${image}`)
     })
 }
 
