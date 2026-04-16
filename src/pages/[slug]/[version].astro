@@ -36,7 +36,8 @@ export function getStaticPaths() {
 const {slug} = Astro.params;
 const {version} = Astro.params;
 
-const versions = entries.find(([key]) => key === `${slug}.md`)?.[1].map(v => v.split('.')[0].split('T')[0]) ?? [];
+const fullVersions = entries.find(([key]) => key === `${slug}.md`)?.[1].map(v => v.replace(/\.md$/gm, '')) ?? []
+const versions = fullVersions.map(v => v.split('.')[0].split('T')[0]);
 
 const files = import.meta.glob('@data/history/**/*.md', {
     query: '?raw',
@@ -73,10 +74,31 @@ const parsed = await marked.parse(fixed, {renderer});
     <nav class="container">
         <label for="versions">Version:</label>
         <select id="versions">
-            {versions.map(version => (
-                    <option value={version}>{version}</option>
+            {versions.map((v, i) => (
+                    <option value={fullVersions[i]}>{v}</option>
             ))}
         </select>
+
+        <script>
+            const versionSelect = document.getElementById('versions') as (HTMLSelectElement | undefined)
+            if (versionSelect) {
+                const currentVersion = location.pathname.split('/').at(-1)
+
+                if (currentVersion) {
+                    versionSelect.value = currentVersion;
+                    // console.log(currentVersion)
+                }
+
+
+                versionSelect.addEventListener('change', e => {
+                    const version = versionSelect.value
+
+                    // console.log(version)
+                    const newPath = [...location.pathname.split('/').slice(0,-1), version].join('/')
+                    location.pathname = newPath;
+                })
+            }
+        </script>
     </nav>
 
     <section class="markdown-body section container mb-lg">
