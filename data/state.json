@@ -60,5 +60,6 @@
   "visualization.md": "d46ad610ada30d627ae39d048212a0bdb8587cf50ed1ddc6ca03da0d380d49c6",
   "wrapper.md": "78ef5953d907ce4086e1366d328e795729c51b23c0f31e30bfc1d7918bbda515",
   "improving-llms.md": "450593c7c1249a829b6e65ca47d0fdc7e257658f8764b76561059ee321ee6e67",
-  "spring.md": "c7e8f23722c650c67dd19f28eca6776cec2f703bd1f7acbf87932728b86181db"
+  "spring.md": "d9335cc925860dfdb0768fb7e41c5363e309657b5edf3adcbabce3d3c3255c34",
+  "spring-hateoas.md": "656e08a294d106a78dd0beedf00ddc3715db92e1ac87811d54258bdb519f7421"
 }
