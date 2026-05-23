@@ -7,6 +7,8 @@ import {data_path} from "./config";
 
 const base = "https://ifnode.htlstp.ac.at/"
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
 const res = await fetch(base)
 const html = await res.text()
 
